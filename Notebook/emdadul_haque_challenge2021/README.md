@@ -106,4 +106,10 @@ For problem 2 -
 ```bash
 python .\problem_2.py
 ```
+*** Note. If any problem let me know. My email address rafathaque1997@gmail.com. 
 
+
+# Contributor 
+| |  |
+| ----------- | ----------- |
+| ![Emdadul Haque Rafat](https://rafat97.github.io/static/c3688eb99d1fef50023a121e3abc5fa6/e8044/my-image.jpg)      | `Name:` Emdadul Haque <br /><br /> `Email:` rafathaque1997@gmail.com <br /><br /> `Website :` https://rafat97.github.io/ <br /><br />`Github:` https://github.com/Rafat97 <br /><br /> `Linkedin:` https://www.linkedin.com/in/emdadul-haque-173131139/   |
