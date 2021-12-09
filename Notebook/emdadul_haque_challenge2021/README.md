@@ -5,7 +5,7 @@
 - [How Can You Run ?](#How-Can-You-Run-)
    - [Easy Way With Google Colab](#Easy-Way-With-Google-Colab)
    - [Running with docker](#Running-with-docker)
-   - [Running with your PC (Tested on Windows 10 Pro)](#Running-with-your-PC--Tested-on-Windows-10-pro)
+   - [Running with your PC (Tested on Windows 10 Pro)](#running-with-your-pc-tested-on-windows-10-pro)
 
 
 
