@@ -107,7 +107,9 @@ For problem 2 -
 ```bash
 python .\problem_2.py
 ```
-*** Note. If any problem let me know. My email address rafathaque1997@gmail.com. 
+---
+
+> *** Note. If any problem let me know. My email address rafathaque1997@gmail.com. 
 
 
 # Contributor 
