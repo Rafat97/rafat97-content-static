@@ -1,0 +1,125 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  my-template-sam
+
+  Sample SAM Template for my-template-sam
+  
+Globals:
+  Function:
+    Timeout: 3
+    Environment:
+      Variables:
+        TABLE_NAME: "TODO_TABLE" # database table name 
+
+Resources:
+  TodoTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: TODO_TABLE
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+
+  TodoGetFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: todo/
+      Handler: getTodo.getTodo
+      Runtime: nodejs14.x
+      Policies: 
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TodoTable
+      Events:
+        TodoApiGateway:
+          Type: Api
+          Properties:
+            Path: /todo
+            Method: get
+      
+  TodoGetIDFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: todo/
+      Handler: getByid.getByid
+      Runtime: nodejs14.x
+      Policies: 
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TodoTable
+      Events:
+        TodoApiGateway:
+          Type: Api
+          Properties:
+            Path: /todo/{id}
+            Method: get
+
+
+  TodoPostFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: todo/
+      Handler: postTodo.postTodo
+      Runtime: nodejs14.x
+      Policies: 
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TodoTable
+      Events:
+        TodoApiGateway:
+          Type: Api
+          Properties:
+            Path: /todo
+            Method: post
+      
+            
+
+  TodoPutFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: todo/
+      Handler: putTodo.putTodo
+      Runtime: nodejs14.x
+      Policies: 
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TodoTable
+      Events:
+        TodoApiGateway:
+          Type: Api
+          Properties:
+            Path: /todo/{id}
+            Method: put
+
+  TodoDeleteFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: todo/
+      Handler: deleteTodo.deleteTodo
+      Runtime: nodejs14.x
+      Policies: 
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TodoTable
+      Events:
+        TodoApiGateway:
+          Type: Api
+          Properties:
+            Path: /todo/{id}
+            Method: delete         
+
+
+
+Outputs:
+  TodoApiGateway:
+    Description: "API Gateway endpoint URL for Prod stage for Todo function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+  TodoGetFunction:
+    Description: "Todo Get Function Lambda Function ARN"
+    Value: !GetAtt TodoGetFunction.Arn
+  TodoPostFunction:
+    Description: "Todo Post Function Lambda Function ARN"
+    Value: !GetAtt TodoPostFunction.Arn
+  # TodoGetFunctionRole:
+  #   Description: "Implicit IAM Role created for todo function"
+  #   Value: !GetAtt HelloWorldFunctionRole.Arn
